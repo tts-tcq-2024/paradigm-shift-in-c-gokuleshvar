@@ -33,7 +33,11 @@ int batteryIsOk(float temperature, float soc, float chargeRate) {
   return (checkTempRange(temperature) && (checkSocRange(soc)) && (checkCrRange(chargeRate)));
   }
 
-int main() {
+int main() { 
+  assert(!batteryIsOk(-5.0, 70, 0.7));
+  assert(!batteryIsOk(50, 70, 0.7));
+  assert(!batteryIsOk(25, 10, 0.7));
+  assert(!batteryIsOk(25, 90, 0.7));
+  assert(!batteryIsOk(25, 70, 0.9));
   assert(batteryIsOk(25, 70, 0.7));
-  assert(!batteryIsOk(50, 85, 0));
 }
