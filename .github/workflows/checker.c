@@ -1,12 +1,19 @@
 #include <stdio.h>
 #include <assert.h>
 
+// Fixed strings for error display
 #define TEMP_STR    "Temperature"
 #define SOC_STR     "State of charge"
 #define CR_STR      "Charge rate"
 #define LOW_STR     "Low"
 #define HIGH_STR    "High"
 
+// Configureable limits
+#define TEMP_UPPER_LIMIT	(45.0f)
+#define TEMP_LOWER_LIMIT	(0.0f)
+#define SOC_UPPER_LIMIT		(80.0f)
+#define SOC_LOWER_LIMIT		(20.0f)
+#define CR_UPPER_LIMIT		(0.8f)
 
 // Function to display error messages
 void dispError(char *param, char *breach) {
@@ -58,9 +65,17 @@ int checkCrRange(float chargeRate) {
 	return crValid_F;
 }
 
+// Scope for future addition
+//int checkXXX(float param) {
+//    ...
+//	  ...
+//}
+
 // Function to check if battery parameters are within valid range
 int batteryIsOk(float temperature, float soc, float chargeRate) {
-  return (checkTempRange(temperature) && (checkSocRange(soc)) && (checkCrRange(chargeRate)));
+	// scope for additional checks in future 
+	// return (checkTempRange(temperature) && (checkSocRange(soc)) && (checkCrRange(chargeRate)) && (checkXXX(param) && ...);
+	return (checkTempRange(temperature) && (checkSocRange(soc)) && (checkCrRange(chargeRate)));
 }
 
 // Tests
