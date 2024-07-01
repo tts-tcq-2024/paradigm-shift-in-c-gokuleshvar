@@ -23,10 +23,10 @@ void dispError(char *param, char *breach) {
 // Function to check temperature range
 int checkTempRange(float temperature) {
 	int tempValid_F = 1;
-	if(temperature < 0.0f) {
+	if(temperature < TEMP_LOWER_LIMIT) {
 		dispError(TEMP_STR, LOW_STR);
 		tempValid_F = 0;
-	} else if(temperature > 45.0f) {
+	} else if(temperature > TEMP_UPPER_LIMIT) {
 		dispError(TEMP_STR, HIGH_STR);
 		tempValid_F = 0;
 	}
@@ -39,10 +39,10 @@ int checkTempRange(float temperature) {
 // Function to check state of charge range
 int checkSocRange(float soc) {
 	int socValid_F = 1;
-    if(soc < 20.0f) {
+    if(soc < SOC_LOWER_LIMIT) {
 		dispError(SOC_STR, LOW_STR);
 		socValid_F = 0;
-	} else if(soc > 80.0f) {
+	} else if(soc > SOC_UPPER_LIMIT) {
 		dispError(SOC_STR, HIGH_STR);
 		socValid_F = 0;
 	}
@@ -55,7 +55,7 @@ int checkSocRange(float soc) {
 // Function to check charge rate range
 int checkCrRange(float chargeRate) {
 	int crValid_F = 1;
-	if(chargeRate > 0.8f) {
+	if(chargeRate > CR_UPPER_LIMIT) {
 	    dispError(CR_STR, HIGH_STR);
 		crValid_F = 0;
 	}
